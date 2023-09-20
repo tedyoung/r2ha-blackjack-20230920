@@ -151,19 +151,19 @@ public class Game {
         System.out.println();
         System.out.println("Player has: ");
         System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.displayValue() + ")");
+        System.out.println(" (" + playerHand.value() + ")");
     }
 
     private void displayFinalGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
         System.out.println(ConsoleHand.cardsAsString(dealerHand));
-        System.out.println(" (" + dealerHand.displayValue() + ")");
+        System.out.println(" (" + dealerHand.value() + ")");
 
         System.out.println();
         System.out.println("Player has: ");
         System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.displayValue() + ")");
+        System.out.println(" (" + playerHand.value() + ")");
     }
 
 }
