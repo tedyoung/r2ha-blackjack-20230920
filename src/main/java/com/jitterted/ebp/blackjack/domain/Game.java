@@ -2,8 +2,6 @@ package com.jitterted.ebp.blackjack.domain;
 
 import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleHand;
 
-import java.util.Scanner;
-
 import static org.fusesource.jansi.Ansi.ansi;
 
 public class Game {
@@ -51,12 +49,6 @@ public class Game {
                 dealerHand.drawFrom(deck);
             }
         }
-    }
-
-    public String inputFromPlayer() {
-        System.out.println("[H]it or [S]tand?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
     }
 
     private void displayBackOfCard() {
