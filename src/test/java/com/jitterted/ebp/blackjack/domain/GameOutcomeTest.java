@@ -19,8 +19,7 @@ class GameOutcomeTest {
 
     @Test
     void playerDealtBetterHandThanDealerAndStandsThenPlayerBeatsDealer() {
-        Game game = new Game(new StubDeck(Rank.TEN, Rank.EIGHT,
-                                          Rank.QUEEN, Rank.JACK));
+        Game game = new Game(StubDeck.playerStandsAndBeatsDealer());
         game.initialDeal();
 
         game.playerStands();
@@ -29,4 +28,5 @@ class GameOutcomeTest {
         assertThat(game.determineOutcome())
                 .isEqualTo("You beat the Dealer! 💵");
     }
+
 }
