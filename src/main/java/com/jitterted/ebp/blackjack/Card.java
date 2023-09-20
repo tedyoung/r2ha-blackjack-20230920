@@ -20,11 +20,11 @@ public class Card {
     public String display() {
         String[] lines = new String[7];
         lines[0] = "┌─────────┐";
-        lines[1] = String.format("│%s%s       │", rank.display(), rank == Rank.TEN ? "" : " ");
+        lines[1] = String.format("│%s%s       │", rank().display(), rank() == Rank.TEN ? "" : " ");
         lines[2] = "│         │";
         lines[3] = String.format("│    %s    │", suit.symbol());
         lines[4] = "│         │";
-        lines[5] = String.format("│       %s%s│", rank == Rank.TEN ? "" : " ", rank.display());
+        lines[5] = String.format("│       %s%s│", rank() == Rank.TEN ? "" : " ", rank().display());
         lines[6] = "└─────────┘";
 
         Ansi.Color cardColor = suit.isRed() ? Ansi.Color.RED : Ansi.Color.BLACK;
@@ -33,6 +33,10 @@ public class Card {
                 + String.join(ansi().cursorDown(1)
                                     .cursorLeft(11)
                                     .toString(), lines);
+    }
+
+    public Rank rank() {
+        return rank;
     }
 
     @Override
