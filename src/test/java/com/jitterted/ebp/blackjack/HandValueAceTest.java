@@ -15,7 +15,7 @@ public class HandValueAceTest {
     public void handWithOneAceAndOtherCardValuedLessThan10ThenAceIsValuedAt11() throws Exception {
         Hand hand = createHand(Rank.ACE, Rank.FIVE);
 
-        assertThat(hand.valueEquals(11 + 5))
+        assertThat(hand.value() == 11 + 5)
                 .isTrue();
     }
 
@@ -23,7 +23,7 @@ public class HandValueAceTest {
     public void handWithOneAceAndOtherCardsValuedAt10ThenAceIsValuedAt11() throws Exception {
         Hand hand = createHand(Rank.ACE, Rank.TEN);
 
-        assertThat(hand.valueEquals(11 + 10))
+        assertThat(hand.value() == 11 + 10)
                 .isTrue();
     }
 
@@ -31,7 +31,7 @@ public class HandValueAceTest {
     public void handWithOneAceAndOtherCardsValuedAs11ThenAceIsValuedAt1() throws Exception {
         Hand hand = createHand(Rank.ACE, Rank.EIGHT, Rank.THREE);
 
-        assertThat(hand.valueEquals(1 + 8 + 3))
+        assertThat(hand.value() == 1 + 8 + 3)
                 .isTrue();
     }
 
