@@ -55,27 +55,45 @@ public class Game {
     public void displayGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.displayFaceUpCard(dealerHand));
+        System.out.println(ConsoleHand.displayFaceUpCard(dealerHand()));
 
         // second card is the hole card, which is hidden, or "face down"
         ConsoleCard.displayBackOfCard();
 
         System.out.println();
         System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.value() + ")");
+        System.out.println(ConsoleHand.cardsAsString(playerHand()));
+        System.out.println(" (" + playerHand().value() + ")");
     }
 
     public void displayFinalGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.cardsAsString(dealerHand));
-        System.out.println(" (" + dealerHand.value() + ")");
+        System.out.println(ConsoleHand.cardsAsString(dealerHand()));
+        System.out.println(" (" + dealerHand().value() + ")");
 
         System.out.println();
         System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.value() + ")");
+        System.out.println(ConsoleHand.cardsAsString(playerHand()));
+        System.out.println(" (" + playerHand().value() + ")");
+    }
+
+    // 1. Return Hand instance field - breaks encapsulation (violates integrity of Game)
+    // 1a. Return a COPY of Hand - however, it's a mutable type, misleads the caller
+    // 1b. Return an interface "view" of the Hand, e.g., interface HandView - violates snapshot unless you return a copy
+    // 2. Give up
+    // 3. Hand.toString() - keep (user-facing) I/O separated from Domain code
+    // 4. Stream<Card> - necessary, but not sufficient (need the Hand's value as well)
+    // 5. New Type just holding Cards and Value
+    // 5a. HandDto - getters for Cards & Value - DTOs live only in Adapters not the Domain
+    // **==> 5b. HandValue - Value Object (part of the Domain) that has only Cards and Value
+    //   ==> Similar to Snapshot pattern
+    public Hand playerHand() {
+        return playerHand;
+    }
+
+    public Hand dealerHand() {
+        return dealerHand;
     }
 
 
