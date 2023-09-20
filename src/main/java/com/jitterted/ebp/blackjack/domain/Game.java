@@ -1,10 +1,5 @@
 package com.jitterted.ebp.blackjack.domain;
 
-import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleCard;
-import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleHand;
-
-import static org.fusesource.jansi.Ansi.ansi;
-
 public class Game {
 
     private final Deck deck;
@@ -50,32 +45,6 @@ public class Game {
                 dealerHand.drawFrom(deck);
             }
         }
-    }
-
-    public void displayGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.displayFaceUpCard(dealerHand()));
-
-        // second card is the hole card, which is hidden, or "face down"
-        ConsoleCard.displayBackOfCard();
-
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand()));
-        System.out.println(" (" + playerHand().value() + ")");
-    }
-
-    public void displayFinalGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.cardsAsString(dealerHand()));
-        System.out.println(" (" + dealerHand().value() + ")");
-
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand()));
-        System.out.println(" (" + playerHand().value() + ")");
     }
 
     // 1. Return Hand instance field - breaks encapsulation (violates integrity of Game)
