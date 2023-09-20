@@ -14,4 +14,6 @@ public class HandDisplayTest {
         assertThat(ConsoleHand.displayFaceUpCard(hand))
                 .isEqualTo("[31m┌─────────┐[1B[11D│A        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        A│[1B[11D└─────────┘");
     }
+
+
 }
