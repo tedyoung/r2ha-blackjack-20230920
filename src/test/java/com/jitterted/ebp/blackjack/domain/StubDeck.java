@@ -16,6 +16,12 @@ public class StubDeck implements Deck {
         this.iterator = cards.listIterator();
     }
 
+    static Deck playerHitsAndGoesBust() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.QUEEN, Rank.JACK,
+                            Rank.THREE);
+    }
+
     @Override
     public Card draw() {
         return iterator.next();
