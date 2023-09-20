@@ -9,8 +9,8 @@ public class Game {
 
     private boolean playerDone;
 
-    public Game() {
-        deck = new Deck();
+    public Game(Deck deck) {
+        this.deck = deck;
     }
 
     public void initialDeal() {
