@@ -35,10 +35,6 @@ public class Hand {
         return handValue;
     }
 
-    String displayFaceUpCard() {
-        return ConsoleCard.display(faceUpCard());
-    }
-
     public Card faceUpCard() {
         return cards.get(0);
     }
