@@ -1,5 +1,8 @@
 package com.jitterted.ebp.blackjack;
 
+import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleGame;
+import com.jitterted.ebp.blackjack.domain.Game;
+
 // this is the COMPOSITION ROOT
 // also called the CONFIGURATOR or ASSEMBLER
 public class Blackjack {
