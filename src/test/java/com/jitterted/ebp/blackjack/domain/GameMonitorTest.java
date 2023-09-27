@@ -10,7 +10,7 @@ class GameMonitorTest {
 
     @Test
     void playerStandsThenGameIsOverAndResultsSentToMonitor() {
-        Fixture fixture = createGameWithMonitorSpy();
+        Fixture fixture = createGameWithMonitorSpy(StubDeck.playerStandsAndBeatsDealer());
 
         fixture.game.playerStands();
 
@@ -19,19 +19,17 @@ class GameMonitorTest {
 
     @Test
     void playerHitsAndGoesBustThenResultsSentToMonitor() {
-        GameMonitor gameMonitorSpy = spy(GameMonitor.class);
-        Game game = new Game(StubDeck.playerHitsAndGoesBust(), gameMonitorSpy);
-        game.initialDeal();
+        Fixture fixture = createGameWithMonitorSpy(StubDeck.playerHitsAndGoesBust());
 
-        game.playerHits();
+        fixture.game.playerHits();
 
-        verify(gameMonitorSpy).roundCompleted(game);
+        verify(fixture.gameMonitorSpy).roundCompleted(fixture.game);
     }
 
 
-    private Fixture createGameWithMonitorSpy() {
+    private Fixture createGameWithMonitorSpy(Deck deck) {
         GameMonitor gameMonitorSpy = spy(GameMonitor.class);
-        Game game = new Game(StubDeck.playerStandsAndBeatsDealer(), gameMonitorSpy);
+        Game game = new Game(deck, gameMonitorSpy);
         game.initialDeal();
         return new Fixture(gameMonitorSpy, game);
     }
