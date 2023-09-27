@@ -97,7 +97,6 @@ class GameOutcomeTest {
         game.initialDeal();
 
         game.playerStands();
-//        game.dealerTurn();
 
         assertThat(game.dealerHand().cards())
                 .hasSize(3);
