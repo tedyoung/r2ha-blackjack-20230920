@@ -27,7 +27,7 @@ public class Game {
     public GameOutcome determineOutcome() {
         if (playerHand.isBusted()) {
             return GameOutcome.PLAYER_BUSTED;
-        } else if (playerHand.value() == 21 && playerHand.cards().count() == 2) {
+        } else if (playerHand.isBlackjack()) {
             return GameOutcome.PLAYER_WINS_BLACKJACK;
         } else if (dealerHand.isBusted()) {
             return GameOutcome.DEALER_BUSTED;
