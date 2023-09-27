@@ -3,6 +3,7 @@ package com.jitterted.ebp.blackjack.domain;
 import com.jitterted.ebp.blackjack.domain.port.GameMonitor;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
@@ -24,6 +25,15 @@ class GameMonitorTest {
         fixture.game.playerHits();
 
         verify(fixture.gameMonitorSpy).roundCompleted(fixture.game);
+    }
+
+    @Test
+    void playerHitsAndDoesNotBustThenResultsNotSentToMonitor() {
+        Fixture fixture = createGameWithMonitorSpy(StubDeck.playerHitsAndDoesNotBust());
+
+        fixture.game.playerHits();
+
+        verify(fixture.gameMonitorSpy, never()).roundCompleted(fixture.game);
     }
 
 
