@@ -8,7 +8,7 @@ class GameOutcomeTest {
 
     @Test
     void playerHitsAndGoesBustThenOutcomeIsPlayerLoses() {
-        Game game = createGameWithInitialDeal(StubDeck.playerHitsAndGoesBust());
+        Game game = createGameAndDoInitialDeal(StubDeck.playerHitsAndGoesBust());
 
         game.playerHits();
 
@@ -18,7 +18,7 @@ class GameOutcomeTest {
 
     @Test
     void playerDealtBetterHandThanDealerAndStandsThenPlayerBeatsDealer() {
-        Game game = createGameWithInitialDeal(StubDeck.playerStandsAndBeatsDealer());
+        Game game = createGameAndDoInitialDeal(StubDeck.playerStandsAndBeatsDealer());
 
         game.playerStands();
         game.dealerTurn();
@@ -27,7 +27,19 @@ class GameOutcomeTest {
                 .isEqualTo("You beat the Dealer! 💵");
     }
 
-    private static Game createGameWithInitialDeal(Deck deck) {
+    @Test
+    void playerDealtHandWithSameValueAsDealerThenPlayerPushesDealer() {
+        Game game = createGameAndDoInitialDeal(StubDeck.playerPushesDealer());
+
+        game.playerStands();
+        game.dealerTurn();
+
+        assertThat(game.determineOutcome())
+                .isEqualTo("Push: Nobody wins, we'll call it even.");
+    }
+
+
+    private static Game createGameAndDoInitialDeal(Deck deck) {
         Game game = new Game(deck);
         game.initialDeal();
         return game;
