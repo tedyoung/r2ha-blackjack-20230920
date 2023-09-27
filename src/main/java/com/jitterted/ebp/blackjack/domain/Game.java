@@ -88,6 +88,7 @@ public class Game {
     public void playerStands() {
         playerDone = true;
         dealerTurn();
+        gameMonitor.roundCompleted(this);
     }
 
     public boolean isPlayerDone() {
