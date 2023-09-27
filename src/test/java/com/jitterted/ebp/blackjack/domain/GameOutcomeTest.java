@@ -54,9 +54,7 @@ class GameOutcomeTest {
 
     @Test
     void noBlackjackDealtPlayerIsNotDone() {
-        Deck notDealtBlackjack = new StubDeck(Rank.EIGHT, Rank.NINE,
-                                              Rank.THREE, Rank.EIGHT);
-        Game game = new Game(notDealtBlackjack);
+        Game game = new Game(StubDeck.playerNotDealtBlackjack());
 
         game.initialDeal();
 
