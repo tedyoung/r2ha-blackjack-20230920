@@ -25,6 +25,7 @@ public class Game {
     }
 
     public GameOutcome determineOutcome() {
+        // Missing Constraint: can't call this method if the player's NOT done
         if (playerHand.isBusted()) {
             return GameOutcome.PLAYER_BUSTED;
         } else if (playerHand.isBlackjack()) {
