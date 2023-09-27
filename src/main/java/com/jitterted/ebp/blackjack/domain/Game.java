@@ -30,7 +30,7 @@ public class Game {
         } else if (dealerHand.isBusted()) {
             return GameOutcome.DEALER_BUSTED;
         } else if (playerHand.beats(dealerHand)) {
-            return GameOutcome.PLAYER_BEATS_DEALERS;
+            return GameOutcome.PLAYER_BEATS_DEALER;
         } else if (playerHand.pushes(dealerHand)) {
             return GameOutcome.PLAYER_PUSHES_DEALER;
         } else {
