@@ -12,7 +12,7 @@ class GameOutcomeTest {
 
         game.playerHits();
 
-        assertThat(game.determineOutcome())
+        assertThat(game.determineOutcome().message())
                 .isEqualTo("You Busted, so you lose.  💸");
     }
 
@@ -23,7 +23,7 @@ class GameOutcomeTest {
         game.playerStands();
         game.dealerTurn();
 
-        assertThat(game.determineOutcome())
+        assertThat(game.determineOutcome().message())
                 .isEqualTo("You beat the Dealer! 💵");
     }
 
@@ -34,7 +34,7 @@ class GameOutcomeTest {
         game.playerStands();
         game.dealerTurn();
 
-        assertThat(game.determineOutcome())
+        assertThat(game.determineOutcome().message())
                 .isEqualTo("Push: Nobody wins, we'll call it even.");
     }
 
