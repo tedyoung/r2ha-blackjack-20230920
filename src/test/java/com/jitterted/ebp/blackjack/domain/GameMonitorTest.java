@@ -10,13 +10,11 @@ class GameMonitorTest {
 
     @Test
     void playerStandsThenGameIsOverAndResultsSentToMonitor() {
-        GameMonitor gameMonitorSpy = spy(GameMonitor.class);
-        Game game = new Game(StubDeck.playerStandsAndBeatsDealer(), gameMonitorSpy);
-        game.initialDeal();
+        Fixture fixture = createGameWithMonitorSpy();
 
-        game.playerStands();
+        fixture.game.playerStands();
 
-        verify(gameMonitorSpy).roundCompleted(game);
+        verify(fixture.gameMonitorSpy).roundCompleted(fixture.game);
     }
 
     @Test
@@ -28,5 +26,23 @@ class GameMonitorTest {
         game.playerHits();
 
         verify(gameMonitorSpy).roundCompleted(game);
+    }
+
+
+    private Fixture createGameWithMonitorSpy() {
+        GameMonitor gameMonitorSpy = spy(GameMonitor.class);
+        Game game = new Game(StubDeck.playerStandsAndBeatsDealer(), gameMonitorSpy);
+        game.initialDeal();
+        return new Fixture(gameMonitorSpy, game);
+    }
+    private static class Fixture {
+
+        public final GameMonitor gameMonitorSpy;
+        public final Game game;
+
+        public Fixture(GameMonitor gameMonitorSpy, Game game) {
+            this.gameMonitorSpy = gameMonitorSpy;
+            this.game = game;
+        }
     }
 }
