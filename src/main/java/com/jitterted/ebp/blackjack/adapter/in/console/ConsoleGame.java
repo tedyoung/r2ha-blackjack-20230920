@@ -24,8 +24,6 @@ public class ConsoleGame {
 
         playerPlays();
 
-        game.dealerTurn();
-
         displayFinalGameState();
 
         System.out.println(game.determineOutcome().message());
