@@ -20,10 +20,7 @@ public class BlackjackController {
     @PostMapping("/start-game")
     public String startGame() {
         game.initialDeal();
-        if (game.isPlayerDone()) {
-            return "redirect:/done";
-        }
-        return "redirect:/game";
+        return redirectBasedOnPlayerState();
     }
 
     @GetMapping("/game")
@@ -35,10 +32,22 @@ public class BlackjackController {
     @PostMapping("/hit")
     public String hitCommand() {
         game.playerHits();
+        return redirectBasedOnPlayerState();
+    }
+
+    private String redirectBasedOnPlayerState() {
         if (game.isPlayerDone()) {
             return "redirect:/done";
         }
         return "redirect:/game";
+
+        /* In the future, with more states in Game...
+           MAP DOMAIN State to ADAPTER appropriate information
+            switch(game.state()):
+             PLAYER_DONE: "/done"
+             PLAYER_BETTING: "/betting"
+             PLAYER_PLAYING: "/game"
+         */
     }
 
     @GetMapping("/done")
