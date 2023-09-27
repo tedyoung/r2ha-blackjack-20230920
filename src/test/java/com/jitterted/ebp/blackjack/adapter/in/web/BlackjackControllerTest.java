@@ -110,8 +110,8 @@ class BlackjackControllerTest {
         assertThat(game.isPlayerDone())
                 .isTrue();
     }
-    @Test
 
+    @Test
     void standResultsInDealerDrawingCardOnTheirTurn() {
         Game game = new Game(new StubDeck(Rank.TEN,  Rank.QUEEN,
                                           Rank.NINE, Rank.FIVE,

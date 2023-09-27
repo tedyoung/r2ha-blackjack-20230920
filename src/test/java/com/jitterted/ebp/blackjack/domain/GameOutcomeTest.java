@@ -89,6 +89,20 @@ class GameOutcomeTest {
                 .isEqualByComparingTo(GameOutcome.PLAYER_BEATS_DEALER);
     }
 
+    @Test
+    void standResultsInDealerDrawingCardOnTheirTurn() {
+        Game game = new Game(new StubDeck(Rank.TEN,  Rank.QUEEN,
+                                          Rank.NINE, Rank.FIVE,
+                                          /*      */ Rank.SIX));
+        game.initialDeal();
+
+        game.playerStands();
+//        game.dealerTurn();
+
+        assertThat(game.dealerHand().cards())
+                .hasSize(3);
+    }
+
     private static Game createGameAndDoInitialDeal(Deck deck) {
         Game game = new Game(deck);
         game.initialDeal();
