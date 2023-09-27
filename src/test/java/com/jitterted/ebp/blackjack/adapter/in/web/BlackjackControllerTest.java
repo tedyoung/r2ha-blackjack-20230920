@@ -8,6 +8,7 @@ import com.jitterted.ebp.blackjack.domain.ShuffledDeck;
 import com.jitterted.ebp.blackjack.domain.StubDeck;
 import com.jitterted.ebp.blackjack.domain.Suit;
 import org.junit.jupiter.api.Test;
+import org.springframework.ui.ConcurrentModel;
 
 import java.util.List;
 
@@ -38,8 +39,17 @@ class BlackjackControllerTest {
         BlackjackController blackjackController = new BlackjackController(game);
         blackjackController.startGame();
 
-        String viewName = blackjackController.gameView();
+        ConcurrentModel model = new ConcurrentModel();
+        String viewName = blackjackController.gameView(model);
         assertThat(viewName)
                 .isEqualTo("blackjack");
+
+        GameView gameView = (GameView) model.getAttribute("gameView");
+
+        assertThat(gameView.getDealerCards())
+                .containsExactly("2♥", "3♣");
+
+        assertThat(gameView.getPlayerCards())
+                .containsExactly("10♦", "K♦");
     }
 }
