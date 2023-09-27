@@ -38,6 +38,16 @@ class GameOutcomeTest {
                 .isEqualByComparingTo(GameOutcome.PLAYER_PUSHES_DEALER);
     }
 
+    @Test
+    void playerDealtBlackjackUponInitialDealAndDealerNotDealtBlackjackThenPlayerWinsBlackjack() {
+        Game game = new Game(new StubDeck(Rank.JACK, Rank.NINE,
+                                          Rank.ACE, Rank.TEN));
+
+        game.initialDeal();
+
+        assertThat(game.determineOutcome())
+                .isEqualByComparingTo(GameOutcome.PLAYER_WINS_BLACKJACK);
+    }
 
     private static Game createGameAndDoInitialDeal(Deck deck) {
         Game game = new Game(deck);
