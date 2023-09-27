@@ -18,4 +18,15 @@ class GameMonitorTest {
 
         verify(gameMonitorSpy).roundCompleted(game);
     }
+
+    @Test
+    void playerHitsAndGoesBustThenResultsSentToMonitor() {
+        GameMonitor gameMonitorSpy = spy(GameMonitor.class);
+        Game game = new Game(StubDeck.playerHitsAndGoesBust(), gameMonitorSpy);
+        game.initialDeal();
+
+        game.playerHits();
+
+        verify(gameMonitorSpy).roundCompleted(game);
+    }
 }
