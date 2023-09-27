@@ -39,6 +39,14 @@ class GameOutcomeTest {
     }
 
     @Test
+    void playerDoneIsFalseWhenGameIsCreated() {
+        Game game = new Game(new StubDeck(Rank.TEN));
+
+        assertThat(game.isPlayerDone())
+                .isFalse();
+    }
+
+    @Test
     void playerDealtBlackjackUponInitialDealAndDealerNotDealtBlackjackThenPlayerWinsBlackjack() {
         Game game = new Game(new StubDeck(Rank.JACK, Rank.NINE,
                                           Rank.ACE, Rank.TEN));
